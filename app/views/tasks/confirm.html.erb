@@ -1,0 +1,13 @@
+<h3>登録するタスク内容を確認してください。</h3>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+
+  <p>タイトル:<%= @task.title %></p>
+  <p>内容:<%= @task.content %></p>
+  <%= form.submit  "登録する" %>
+
+  <%= form.submit "戻る", name: 'back' %>
+
+<% end %>
