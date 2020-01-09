@@ -8,15 +8,17 @@
     <th>内容</th>
   </tr>
 
+<div>
 <% @task.each do |task| %>
   <tr>
-    <td><%= task.title %></td>
+    <td class="task_list"><%= task.title %></td>
     <td><%= task.content %></td>
 
     <td><%= link_to '詳細確認', task_path(task.id) %></td>
     <td><%= link_to "タスク編集", edit_task_path(task.id) %></td>
     <td><%= link_to 'タスク削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
+</div>
 <% end %>
 </table>
 
