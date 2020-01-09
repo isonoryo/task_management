@@ -30,3 +30,37 @@ labelsテーブル
 | id | integer |
 | task_id(FK) | integer |
 | type | string |
+
+## Herokuへのデプロイ手順
+### ①アセットプリコンパイルを行う。
+Herokuへデプロイ出来る様に、ファイルを圧縮。
+
+```
+rails assets:precompile RAILS_ENV=production
+```
+
+### ②Gitへコミット
+HerokuへpushするためにGitへcommit。
+
+```
+git add --all
+```
+
+```
+git commit -m 'コメント入力'
+```
+
+### ③Herokuへデプロイ
+Herokuへプッシュした後は、db:migrateを行う。
+
+```
+heroku create
+```
+
+```
+git push heroku master
+```
+
+```
+heroku run rails db:migrate
+```
