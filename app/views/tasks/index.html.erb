@@ -2,11 +2,14 @@
 
 <p><%= notice %></p>
 
+<%= link_to t('view.post'), new_task_path %>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>終了期限</th>
+    <th><%= t('view.title') %></th>
+    <th><%= t('view.content') %></th>
+    <th><%= t('view.limit') %></th>
   </tr>
 
 <div>
@@ -16,12 +19,10 @@
     <td><%= task.content %></td>
     <td><%= task.limit %></td>
 
-    <td><%= link_to '詳細確認', task_path(task.id) %></td>
-    <td><%= link_to "タスク編集", edit_task_path(task.id) %></td>
-    <td><%= link_to 'タスク削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to t('view.detailed_confirmation'), task_path(task.id) %></td>
+    <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
+    <td><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: t('view.confirmation_of_deletion') } %></td>
   </tr>
 </div>
 <% end %>
 </table>
-
-<%= link_to '新タスク投稿', new_task_path %>

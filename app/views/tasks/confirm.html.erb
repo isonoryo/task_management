@@ -5,11 +5,11 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :limit %>
 
-  <p>タイトル:<%= @task.title %></p>
-  <p>内容:<%= @task.content %></p>
-  <p>終了期限:<%= @task.limit %></p>
-  <%= form.submit  "登録する" %>
+  <p><%= t('view.title') %>:<%= @task.title %></p>
+  <p><%= t('view.content') %>:<%= @task.content %></p>
+  <p><%= t('view.limit') %>:<%= @task.limit %></p>
+  <%= form.submit t('view.register') %>
 
-  <%= form.submit "戻る", name: 'back' %>
+  <%= form.submit t('view.return'), name: 'back' %>
 
 <% end %>

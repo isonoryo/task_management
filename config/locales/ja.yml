@@ -205,3 +205,17 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  view:
+    title: タイトル
+    content: 内容
+    limit: 終了期限
+    top: タスク一覧画面に戻る
+    register: 登録する
+    return: 戻る
+    edit: タスク編集
+    delete: タスク削除
+    post: タスク投稿
+    detailed_confirmation: 詳細確認
+    errors: 件のエラーがあります！
+    confirmation_of_deletion: 本当に削除していいですか？
