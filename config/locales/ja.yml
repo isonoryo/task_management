@@ -223,6 +223,7 @@ ja:
     content_detail_screen: タスク詳細画面
     content_list_screen: タスク一覧
     limit_sort: 終了期限で並び替える
+    priority_sort: 優先度で並び替える
     errors: 件のエラーがあります！
     confirmation_of_deletion: 本当に削除していいですか？
     title_search: タイトル検索
@@ -232,3 +233,7 @@ ja:
     embarking: 着手中
     done: 完了
     search: 検索する
+    priority: 優先度
+    high: 高
+    middle: 中
+    low: 低

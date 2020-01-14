@@ -15,18 +15,27 @@
     <%= form.label :title, t('view.title') %>
     <%= form.text_field :title %>
   </div>
+
   <div class="task_title">
     <%= form.label :content, t('view.content') %>
     <%= form.text_field :content %>
   </div>
+
   <div class="task_title">
     <%= form.label :limit, t('view.limit') %>
     <%= form.text_field :limit %>
   </div>
+
   <div class="task_title">
     <%= form.label :status, t('view.status') %>
     <%= form.select :status, [t('view.not_started_yet'), t('view.embarking'), t('view.done')] %>
   </div>
+
+  <div class="task_title">
+    <%= form.label :priority, t('view.priority') %>
+    <%= form.select :priority, [t('view.high'), t('view.middle'), t('view.low')] %>
+  </div>
+
   <%= form.submit %>
 <% end %>
 

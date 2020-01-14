@@ -15,6 +15,7 @@
 
 <%= link_to t('view.post'), new_task_path %>
 <%= link_to t('view.limit_sort'), tasks_path(sort_expired: "true") %>
+<%= link_to t('view.priority_sort'), tasks_path(sort_priority: "true") %>
 
 <table>
   <tr>
@@ -22,6 +23,7 @@
     <th><%= t('view.content') %></th>
     <th><%= t('view.limit') %></th>
     <th><%= t('view.status') %></th>
+    <th><%= t('view.priority') %></th>
   </tr>
 
 <div>
@@ -31,6 +33,7 @@
     <td><%= task.content %></td>
     <td class="task_limit"><%= task.limit %></td>
     <td><%= task.status %></td>
+    <td><%= task.priority %></td>
 
     <td><%= link_to t('view.detailed_confirmation'), task_path(task.id) %></td>
     <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
