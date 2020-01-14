@@ -4,8 +4,12 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @task = Task.all.order(limit: :desc)
-    else
+    elsif
+      @task = Task.where("title LIKE ? AND status LIKE ?", "%#{ params[:title] }%", "%#{params[:status]}%")
+    else params[:search]
       @task = Task.all.order(created_at: :desc)
+
+      # @task = Task.search(params)
     end
   end
 
@@ -54,7 +58,7 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:title, :content, :limit)
+      params.require(:task).permit(:title, :content, :limit, :status)
     end
 
     def set_task

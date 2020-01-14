@@ -9,17 +9,27 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク一覧画面' do
     context 'タスクを作成した場合' do
       it '作成済みのタスクが表示されること' do
-        visit tasks_path
-        expect(page).to have_content 'タイトル1'
+        visit tasks_path #タスク一覧へ移動
+        expect(page).to have_content 'タイトル1' #タスクにタイトル１が含まれているか確認
       end
     end
 
     context '複数のタスクを作成した場合' do
       it 'タスクが作成日時の降順に並んでいること' do
         visit tasks_path
-        task_list = all('.task_list')
-        expect(task_list[0]).to have_content 'タイトル2'
+        task_list = all('.task_list') #タスク一覧を配列で取得
+        expect(task_list[0]).to have_content 'タイトル2' #タスクが作成日の降順で並んでいるか確認
         expect(task_list[1]).to have_content 'タイトル1'
+      end
+    end
+
+    context 'タスクを終了期限で並び替えるを押した場合' do
+      it 'タスクの順番が終了期限の降順で表示されること' do
+          visit tasks_path
+          task_limit = all('.task_limit') #タスク一覧を配列で取得
+          click_on '終了期限で並び替える' #終了期限で並び替えるをクリック
+          expect(page).to have_content '2030/03/30'#タスクが終了期限の降順で並んでいるか確認
+          expect(page).to have_content '2020/01/31'
       end
     end
   end

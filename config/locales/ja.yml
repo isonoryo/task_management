@@ -217,5 +217,18 @@ ja:
     delete: タスク削除
     post: タスク投稿
     detailed_confirmation: 詳細確認
+    content_create_new: タスクを作成する
+    content_confirmation_request: 登録するタスク内容を確認してください
+    content_editing_screen: タスク編集
+    content_detail_screen: タスク詳細画面
+    content_list_screen: タスク一覧
+    limit_sort: 終了期限で並び替える
     errors: 件のエラーがあります！
     confirmation_of_deletion: 本当に削除していいですか？
+    title_search: タイトル検索
+    status: ステータス
+    unspecified: 指定しない
+    not_started_yet: 未着手
+    embarking: 着手中
+    done: 完了
+    search: 検索する

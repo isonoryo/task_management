@@ -23,6 +23,10 @@
     <%= form.label :limit, t('view.limit') %>
     <%= form.text_field :limit %>
   </div>
+  <div class="task_title">
+    <%= form.label :status, t('view.status') %>
+    <%= form.select :status, [t('view.not_started_yet'), t('view.embarking'), t('view.done')] %>
+  </div>
   <%= form.submit %>
 <% end %>
 

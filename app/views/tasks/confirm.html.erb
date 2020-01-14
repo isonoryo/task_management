@@ -1,13 +1,15 @@
-<h3>登録するタスク内容を確認してください。</h3>
+<h3><%= t('view.content_confirmation_request') %></h3>
 
 <%= form_with(model: @task, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :limit %>
+  <%= form.hidden_field :status %>
 
   <p><%= t('view.title') %>:<%= @task.title %></p>
   <p><%= t('view.content') %>:<%= @task.content %></p>
   <p><%= t('view.limit') %>:<%= @task.limit %></p>
+  <p><%= t('view.status') %>:<%= @task.status %></p>
   <%= form.submit t('view.register') %>
 
   <%= form.submit t('view.return'), name: 'back' %>
