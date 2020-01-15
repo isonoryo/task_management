@@ -10,6 +10,154 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self
  */
+
+ /*ページネーション自体のデザイン*/
+ .pagination>li>a {
+   border: none;     /*枠線をなくす*/
+   color: #696969;   /*文字の色を変える*/
+ }
+
+ /* 表示しているページ番号のデザイン */
+ .pagination>.active>a {
+   background: #93c9ff;     /*背景の色を変える*/
+   border-radius: 15px;     /*角を丸くする*/
+ }
+
+ /*ホバー時のデザイン*/
+ .pagination>li>a:hover {
+   border-radius: 15px;    /*角を丸くする*/
+ }
+
+ html {
+   position: relative;
+   font-size: 62.5%;
+   width: 100%;
+   height: 100%;
+ }
+
+ body {
+   width: 100%;
+   background-color: #EEEEEE;
+   height: 100%;
+ }
+
+ .container {
+   width: 70%;
+   position: relative;
+   min-height: 100%;
+   padding-top: 75px;
+ }
+
+ .header {
+   height: 75px;
+   background-color: white;
+   width: 100%;
+   margin-top: 0;
+   position: fixed;
+   z-index: 1;
+ }
+
+
+ /* .top_ul li {
+   float: right;
+   display: block;
+   text-align: center;
+   margin: 15px 15px;
+ }
+
+ #top_icon {
+   font-family: fantasy;
+   font-size: 35px;
+   float: left;
+ }
+
+ #li_top {
+   float: left;
+   /* margin-left: 15%; */
+ /* }
+
+ .clearfix:after {
+   content: "";
+   display: block;
+   clear: both;
+ } */
+ header {
+   width: 100%;
+   background-color: white;
+   height: 54px;
+ }
+
+ footer {
+   /* position: absolute; */
+   width: 100%;
+   background-color: white;
+   text-align: center;
+   height: 50px;
+   bottom: 0px;
+ }
+
+ .task_list{
+    background-color:#F3A7AB;
+    color:#fff;
+    box-sizing: border-box;
+    border: solid 1px #fff;
+}
+
+.task_content{
+   background-color:#F3A7AB;
+   color:#fff;
+   box-sizing: border-box;
+   border: solid 1px #fff;
+}
+
+.task_limit{
+   background-color:#F3A7AB;
+   color:#fff;
+   box-sizing: border-box;
+   border: solid 1px #fff;
+}
+
+.task_status{
+   background-color:#F3A7AB;
+   color:#fff;
+   box-sizing: border-box;
+   border: solid 1px #fff;
+}
+
+.task_priority{
+   background-color:#F3A7AB;
+   color:#fff;
+   box-sizing: border-box;
+   border: solid 1px #fff;
+}
+
+.item{
+  background-color:#F3A7AB;
+  color:black;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+}
+
+#top_icon {
+   font-family: fantasy;
+   font-size: 35px;
+   float: center;
+ }
+
+/*
+ #error_explanation {
+   color: red;
+ }
+
+ .errors_msg {
+   text-align: left;
+ }
+
+ .notice {
+   font-size: 3rem;
+   text-align: center;
+ } */

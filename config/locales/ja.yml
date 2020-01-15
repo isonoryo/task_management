@@ -213,10 +213,10 @@ ja:
     top: タスク一覧画面に戻る
     register: 登録する
     return: 戻る
-    edit: タスク編集
-    delete: タスク削除
+    edit: 編集
+    delete: 削除
     post: タスク投稿
-    detailed_confirmation: 詳細確認
+    detailed_confirmation: 確認
     content_create_new: タスクを作成する
     content_confirmation_request: 登録するタスク内容を確認してください
     content_editing_screen: タスク編集
