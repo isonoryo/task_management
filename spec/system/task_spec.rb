@@ -17,19 +17,29 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '複数のタスクを作成した場合' do
       it 'タスクが作成日時の降順に並んでいること' do
         visit tasks_path
-        task_list = all('.task_list') #タスク一覧を配列で取得
+        task_list = all('.task_list')
         expect(task_list[0]).to have_content 'タイトル2' #タスクが作成日の降順で並んでいるか確認
         expect(task_list[1]).to have_content 'タイトル1'
       end
     end
 
-    context 'タスクを終了期限で並び替えるを押した場合' do
+    context '終了期限で並び替えるを押した場合' do
       it 'タスクの順番が終了期限の降順で表示されること' do
           visit tasks_path
-          task_limit = all('.task_limit') #タスク一覧を配列で取得
-          click_on '終了期限で並び替える' #終了期限で並び替えるをクリック
-          expect(page).to have_content '2030/03/30'#タスクが終了期限の降順で並んでいるか確認
-          expect(page).to have_content '2020/01/31'
+          click_on '終了期限で並び替える', match: :first
+          task_limit = all('.task_limit')
+          expect(task_limit[0]).to have_content '2020-03-30'#タスクが終了期限の降順で並んでいるか確認
+          expect(task_limit[1]).to have_content '2010-03-30'
+      end
+    end
+
+    context '優先度で並び替えるを押した場合' do
+      it 'タスクの順番が優先度の高い順で表示されること' do
+        visit tasks_path
+        click_on '優先度で並び替える', match: :first
+        task_priority = all('.task_priority') #タスク一覧を配列で取得
+        expect(task_priority[0]).to have_content '高' #タスクが作成日の降順で並んでいるか確認
+        expect(task_priority[1]).to have_content '中'
       end
     end
   end
