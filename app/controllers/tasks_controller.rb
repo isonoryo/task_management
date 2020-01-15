@@ -5,8 +5,12 @@ class TasksController < ApplicationController
     @task = Task.all.order(created_at: :desc)
     if params[:sort_expired]
       @task = Task.all.order(limit: :desc)
-    else
+    end
+    if
       @task = Task.where("title LIKE ? AND status LIKE ?", "%#{ params[:title] }%", "%#{params[:status]}%")
+    end
+    if params[:sort_priority]
+      @task = Task.all.order(priority: :desc)
     end
   end
 
