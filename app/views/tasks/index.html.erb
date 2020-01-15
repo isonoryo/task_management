@@ -2,6 +2,8 @@
 
 <p><%= notice %></p>
 
+<%= paginate @task %>
+
 <%= form_with(method: :get, url: tasks_path, local: true) do |f| %>
   <%= f.label :title, t('view.title_search') %>
   <%= f.text_field :title %>

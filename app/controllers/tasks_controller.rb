@@ -14,12 +14,12 @@ class TasksController < ApplicationController
   #   end
   # end
   def index
-    @task = Task.all.order(created_at: :desc)
+    @task = Task.all.order(created_at: :desc).page(params[:page]).per(3)
     if params[:sort_expired]
-      @task = Task.all.order(limit: :desc)
+      @task = Task.all.order(limit: :desc).page(params[:page]).per(3)
     end
     if params[:sort_priority]
-      @task = Task.all.order(priority: :desc)
+      @task = Task.all.order(priority: :desc).page(params[:page]).per(3)
     end
     if params[:title].present?
       @task = @task.search_title params[:title]
