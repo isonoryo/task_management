@@ -1,25 +1,46 @@
-<h1>タスク一覧</h1>
+<h1><%= t('view.content_list_screen') %></h1>
 
 <p><%= notice %></p>
 
+<%= paginate @task %>
+
+<%= form_with(method: :get, url: tasks_path, local: true) do |f| %>
+  <%= f.label :title, t('view.title_search') %>
+  <%= f.text_field :title %>
+
+  <%= f.label :status, t('view.status') %>
+  <%= f.select :status, ['', t('view.not_started_yet'), t('view.embarking'), t('view.done'),]%>
+
+  <%= f.hidden_field :search, value: 'true' %>
+  <%= f.submit t('view.search') %>
+<% end %>
+
+<button type="button" class="btn btn-success"><%= link_to t('view.post'), new_task_path %></button>
+<button type="button" class="btn btn-success"><%= link_to t('view.limit_sort'), tasks_path(sort_expired: "true") %></button>
+<button type="button" class="btn btn-success"><%= link_to t('view.priority_sort'), tasks_path(sort_priority: "true") %></button>
+
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
+    <th class="item"><%= t('view.title') %></th>
+    <th class="item"><%= t('view.content') %></th>
+    <th class="item"><%= t('view.limit') %></th>
+    <th class="item"><%= t('view.status') %></th>
+    <th class="item"><%= t('view.priority') %></th>
   </tr>
 
-<div>
+<div class="tasks">
 <% @task.each do |task| %>
   <tr>
     <td class="task_list"><%= task.title %></td>
-    <td><%= task.content %></td>
+    <td class="task_content"><%= task.content %></td>
+    <td class="task_limit"><%= task.limit %></td>
+    <td class="task_status"><%= task.status %></td>
+    <td class="task_priority"><%= task.priority %></td>
 
-    <td><%= link_to '詳細確認', task_path(task.id) %></td>
-    <td><%= link_to "タスク編集", edit_task_path(task.id) %></td>
-    <td><%= link_to 'タスク削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><button type="button" class="btn btn-success"><%= link_to t('view.detailed_confirmation'), task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>
+    <td><button type="button" class="btn btn-danger"><%= link_to t('view.delete'), task_path(task.id), method: :delete ,data: { confirm: t('view.confirmation_of_deletion') } %></button></td>
   </tr>
 </div>
 <% end %>
 </table>
-
-<%= link_to '新タスク投稿', new_task_path %>

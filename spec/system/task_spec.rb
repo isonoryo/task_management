@@ -9,8 +9,8 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク一覧画面' do
     context 'タスクを作成した場合' do
       it '作成済みのタスクが表示されること' do
-        visit tasks_path
-        expect(page).to have_content 'タイトル1'
+        visit tasks_path #タスク一覧へ移動
+        expect(page).to have_content 'タイトル1' #タスクにタイトル１が含まれているか確認
       end
     end
 
@@ -18,8 +18,30 @@ RSpec.describe 'タスク管理機能', type: :system do
       it 'タスクが作成日時の降順に並んでいること' do
         visit tasks_path
         task_list = all('.task_list')
-        expect(task_list[0]).to have_content 'タイトル2'
+        expect(task_list[0]).to have_content 'タイトル2' #タスクが作成日の降順で並んでいるか確認
         expect(task_list[1]).to have_content 'タイトル1'
+      end
+    end
+
+    context '終了期限で並び替えるを押した場合' do
+      it 'タスクの順番が終了期限の降順で表示されること' do
+          visit tasks_path
+          click_on '終了期限で並び替える', match: :first
+          expect(page).to have_content 'タスク一覧'#ページ読み込みを待つための記述（ループ処理が入る）
+          task_limit = all('.task_limit')
+          expect(task_limit[0]).to have_content '2020-03-30'#タスクが終了期限の降順で並んでいるか確認
+          expect(task_limit[1]).to have_content '2010-03-30'
+      end
+    end
+
+    context '優先度で並び替えるを押した場合' do
+      it 'タスクの順番が優先度の高い順で表示されること' do
+        visit tasks_path
+        click_on '優先度で並び替える', match: :first
+        expect(page).to have_content 'タスク一覧'#ページ読み込みを待つための記述（ループ処理が入る）
+        task_priority = all('.task_priority') #タスク一覧を配列で取得
+        expect(task_priority[0]).to have_content '高' #タスクが優先順位の高い順で並んでいるか確認
+        expect(task_priority[1]).to have_content '中'
       end
     end
   end

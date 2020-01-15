@@ -9,7 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <p id="top_icon">タスクマネジメント</p>
+  </header>
+
   <body>
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
+
+  <footer>
+      <p>運営会社I・S・O株式会社</p>
+      <p>© 2019 Copyright DIVE INTO CODE Corp.</p>
+  </footer>
+
+
 </html>
