@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  #ログインしていない時はログイン画面へ遷移させる記述。
   def login_required
     redirect_to new_session_path unless current_user
   end
@@ -33,7 +34,7 @@ class ApplicationController < ActionController::Base
 
 end
 
-
+  #
   # before_action :user_logged_in?
   #
   # def user_logged_in?

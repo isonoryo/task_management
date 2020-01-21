@@ -14,12 +14,12 @@ class TasksController < ApplicationController
   #   end
   # end
   def index
-    @task = Task.all.order(created_at: :desc).page(params[:page]).per(5)
+    @task = current_user.tasks.created_at.page(params[:page]).per(5) #ログインユーザーのタスクを作成日降順に。created_atはモデルにスコープ記載。以下同様。
     if params[:sort_expired]
-      @task = Task.all.order(limit: :desc).page(params[:page]).per(5)
+      @task = current_user.tasks.limit_at.page(params[:page]).per(5)
     end
     if params[:sort_priority]
-      @task = Task.all.order(priority: :desc).page(params[:page]).per(5)
+      @task = current_user.tasks.priority_at.page(params[:page]).per(5)
     end
     if params[:title].present?
       @task = @task.search_title params[:title]
