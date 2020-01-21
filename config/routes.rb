@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'tasks#index'
+  get 'sessions/new'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
+  # root to: 'tasks#index'
+
   resources :tasks do
     collection do
       post :confirm

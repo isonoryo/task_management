@@ -11,6 +11,18 @@
 
   <header>
     <p id="top_icon">タスクマネジメント</p>
+    <% if logged_in? %>
+      <ul class="top_ul">
+        <li id="li_top"><%= link_to "プロフィール", user_path(current_user.id) %></li>
+        <li id="li_top"><%= link_to '投稿一覧へ', tasks_path %></li>
+        <li id="li_top"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      </ul>
+    <% else %>
+      <ul class="top_ul">
+        <li id="li_top"><%= link_to "新規アカウント登録", new_user_path %></li>
+        <li id="li_top"><%= link_to "ログイン", new_session_path %></li>
+      </ul>
+    <% end %>
   </header>
 
   <body>
