@@ -16,6 +16,7 @@
         <li id="li_top"><%= link_to "プロフィール", user_path(current_user.id) %></li>
         <li id="li_top"><%= link_to '投稿一覧へ', tasks_path %></li>
         <li id="li_top"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+        <li id="li_top"><%= link_to t('ユーザー一覧(管理者用)'), admin_users_path %></li>
       </ul>
     <% else %>
       <ul class="top_ul">
