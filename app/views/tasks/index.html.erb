@@ -20,12 +20,24 @@
 <button type="button" class="btn btn-success"><%= link_to t('view.priority_sort'), tasks_path(sort_priority: "true") %></button>
 
 <table>
+  <tbody>
+    <% @task.each do |task| %>
+      <tr>
+      <% task.task_labels.each do |task_label| %>
+        <%= task_label.label.title %><br>
+      <% end %>    
+    <% end %>
+  </tbody>
+</table>
+
+<table>
   <tr>
     <th class="item"><%= t('view.title') %></th>
     <th class="item"><%= t('view.content') %></th>
     <th class="item"><%= t('view.limit') %></th>
     <th class="item"><%= t('view.status') %></th>
     <th class="item"><%= t('view.priority') %></th>
+    <th class="item"><%= t('view.label') %></th>
   </tr>
 
 <div class="tasks">
@@ -36,6 +48,8 @@
     <td class="task_limit"><%= task.limit %></td>
     <td class="task_status"><%= task.status %></td>
     <td class="task_priority"><%= task.priority %></td>
+
+
 
     <td><button type="button" class="btn btn-success"><%= link_to t('view.detailed_confirmation'), task_path(task.id) %></button></td>
     <td><button type="button" class="btn btn-success"><%= link_to t('view.edit'), edit_task_path(task.id) %></button></td>

@@ -4,3 +4,7 @@
 <p><%= t('view.limit') %>: <%= @task.limit %></p>
 <p><%= t('view.status') %>: <%= @task.status %></p>
 <p><%= t('view.priority') %>: <%= @task.priority %></p>
+
+ <% @task.task_labels.each do |task_label| %>
+  <%= task_label.label.title %><br>
+<% end %>
