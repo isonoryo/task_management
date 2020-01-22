@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :title, presence: true
   validates :content, presence: true
@@ -9,7 +9,7 @@ class Task < ApplicationRecord
   enum status: { "未着手": 1, "着手中": 2, "完了": 3 }
 
   scope :created_at, -> {order(created_at: :desc)}
-  scope :limiti_at, -> {order(limit: :desc)}
+  scope :limit_at, -> {order(limit: :desc)}
   scope :priority_at, -> {order(priority: :desc)}
 
   scope :search_title, ->(title) {

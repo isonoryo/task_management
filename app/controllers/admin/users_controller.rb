@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_user
+  # before_action :destroy_myself, {only: [:destroy]}
 
   def new
     @user = User.new
@@ -38,8 +39,11 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_url, notice:"ユーザー 「#{@user.name}」を削除しました。"
+    if @user.destroy
+      redirect_to admin_users_url, notice:"ユーザー 「#{@user.name}」を削除しました"
+    else
+      redirect_to admin_users_url, notice:"これ以上の管理者削除は出来ません"
+    end
   end
 
 
@@ -56,13 +60,13 @@ class Admin::UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
-    def destroy_myself
-      if @user == current_user
-      redirect_to admin_users_url,
-                  notice: "管理者自身を削除することは出来ません。"
-    end
-  end
+    #
+    # def destroy_myself
+    #   @user = User.find(params[:id])
+    #   if @user.admin? && User.where(admin: :true).count == 1
+    #   redirect_to admin_users_url,notice:"これ以上管理者は削除できません"
+    #   end
+    # end
 
 
 end
