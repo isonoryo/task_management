@@ -61,7 +61,6 @@
    z-index: 1;
  }
 
-
  /* .top_ul li {
    float: right;
    display: block;
@@ -133,6 +132,14 @@
    color:#fff;
    box-sizing: border-box;
    border: solid 1px #fff;
+}
+
+.task_label {
+  display: block;
+  background-color:#F3A7AB;
+  color:#fff;
+  box-sizing: border-box;
+  border: solid 1px #fff;
 }
 
 .item{

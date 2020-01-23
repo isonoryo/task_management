@@ -19,16 +19,7 @@
 <button type="button" class="btn btn-success"><%= link_to t('view.limit_sort'), tasks_path(sort_expired: "true") %></button>
 <button type="button" class="btn btn-success"><%= link_to t('view.priority_sort'), tasks_path(sort_priority: "true") %></button>
 
-<table>
-  <tbody>
-    <% @task.each do |task| %>
-      <tr>
-      <% task.task_labels.each do |task_label| %>
-        <%= task_label.label.title %><br>
-      <% end %>    
-    <% end %>
-  </tbody>
-</table>
+
 
 <table>
   <tr>
@@ -48,6 +39,10 @@
     <td class="task_limit"><%= task.limit %></td>
     <td class="task_status"><%= task.status %></td>
     <td class="task_priority"><%= task.priority %></td>
+    <% task.task_labels.each do |task_label| %>
+    <td class="task_label"><%= task_label.label.title %></td>
+      <% end %>
+
 
 
 
