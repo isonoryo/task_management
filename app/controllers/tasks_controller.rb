@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :task_check, only: [:show]
 
   def index
     @task = current_user.tasks.created_at.page(params[:page]).per(5) #ログインユーザーのタスクを作成日降順に。created_atはモデルにスコープ記載。以下同様。
@@ -36,6 +37,7 @@ class TasksController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -64,11 +66,17 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:title, :content, :limit, :status, :priority, label_ids: [])
+      params.require(:task).permit(:title, :content, :limit, :status, :priority, :user_id, label_ids: [])
     end
 
     def set_task
     @task = Task.find(params[:id])
+    end
+
+    def task_check
+      if @task.user_id != current_user.id
+        redirect_to user_path(current_user.id), notice:"他者の投稿へはアクセス出来ません"
+      end
     end
 
 end
