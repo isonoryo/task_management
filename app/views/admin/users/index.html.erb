@@ -1,0 +1,27 @@
+<h1>ユーザー一覧</h1>
+<li id="li_top"><%= link_to "新規ユーザー作成", new_admin_user_path %></li>
+<table>
+  <tr>
+    <th><%= "名前" %></th>
+    <th><%= "メールアドレス" %></th>
+    <th><%= "管理者権限" %></th>
+    <th><%= "タスク数" %></th>
+    <th><%= "アカウント作成日時" %></th>
+  </tr>
+
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.admin? ? "あり":"なし" %></td>
+    <td><%= user.tasks.count %></td>
+    <td><%= user.created_at %></td>
+
+    <td><%= link_to t('view.user_show'), admin_user_path(user.id) %></td>
+    <td><%= link_to t('view.edit'), edit_admin_user_path(user), data: { confirm: "ユーザー「#{user.name}」を編集します。よろしいですか？"}, class: 'btn btn-danger' %></td>
+    <td><%= link_to t('view.delete'), [:admin, user], method: :delete, data:{confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"},class: 'btn btn-danger'%></td>
+
+  </tr>
+<% end %>
+
+</table>

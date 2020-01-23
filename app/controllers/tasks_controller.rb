@@ -1,25 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  # def index
-  #   @task = Task.all.order(created_at: :desc)
-  #   if params[:sort_expired]
-  #     @task = Task.all.order(limit: :desc)
-  #   end
-  #   if
-  #     @task = Task.where("title LIKE ? AND status LIKE ?", "%#{ params[:title] }%", "%#{params[:status]}%")
-  #   end
-  #   if params[:sort_priority]
-  #     @task = Task.all.order(priority: :desc)
-  #   end
-  # end
   def index
-    @task = Task.all.order(created_at: :desc).page(params[:page]).per(5)
+    @task = current_user.tasks.created_at.page(params[:page]).per(5) #ログインユーザーのタスクを作成日降順に。created_atはモデルにスコープ記載。以下同様。
     if params[:sort_expired]
-      @task = Task.all.order(limit: :desc).page(params[:page]).per(5)
+      @task = current_user.tasks.limit_at.page(params[:page]).per(5)
     end
     if params[:sort_priority]
-      @task = Task.all.order(priority: :desc).page(params[:page]).per(5)
+      @task = current_user.tasks.priority_at.page(params[:page]).per(5)
     end
     if params[:title].present?
       @task = @task.search_title params[:title]
@@ -35,7 +23,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
@@ -68,7 +56,8 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
 

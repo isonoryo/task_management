@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :task do
+  factory :task, class: Task do
     title { 'タイトル1' }
     content { 'コンテント1' }
     limit { '2010/03/30'}
