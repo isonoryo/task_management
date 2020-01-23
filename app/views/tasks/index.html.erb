@@ -11,6 +11,9 @@
   <%= f.label :status, t('view.status') %>
   <%= f.select :status, ['', t('view.not_started_yet'), t('view.embarking'), t('view.done'),]%>
 
+  <%= f.label :label_ids, t('view.label') %>
+  <%= f.select :label_id, Label.pluck(:title, :id), { include_blank: true } %>
+
   <%= f.hidden_field :search, value: 'true' %>
   <%= f.submit t('view.search') %>
 <% end %>
@@ -18,7 +21,6 @@
 <button type="button" class="btn btn-success"><%= link_to t('view.post'), new_task_path %></button>
 <button type="button" class="btn btn-success"><%= link_to t('view.limit_sort'), tasks_path(sort_expired: "true") %></button>
 <button type="button" class="btn btn-success"><%= link_to t('view.priority_sort'), tasks_path(sort_priority: "true") %></button>
-
 
 
 <table>
@@ -42,8 +44,6 @@
     <% task.task_labels.each do |task_label| %>
     <td class="task_label"><%= task_label.label.title %></td>
       <% end %>
-
-
 
 
     <td><button type="button" class="btn btn-success"><%= link_to t('view.detailed_confirmation'), task_path(task.id) %></button></td>

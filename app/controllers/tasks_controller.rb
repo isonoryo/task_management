@@ -16,6 +16,9 @@ class TasksController < ApplicationController
     if params[:status].present?
       @task = @task.search_status params[:status]
     end
+    if params[:label_id].present?#ラベル検索機能
+      @task = @task.joins(:labels).where(labels: { id: params[:label_id] })
+    end
   end
 
 

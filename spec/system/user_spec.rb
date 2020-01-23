@@ -22,9 +22,9 @@ describe 'ユーザー新規登録画面' do
   end
 end
 
-  describe 'ログアウト' do
-    context 'ログアウト' do
-      it 'ログアウト' do
+  describe 'ログアウト機能' do
+    context 'ログアウトをクリックした際' do
+      it 'ログアウトが出来ること' do
         visit new_user_path
         fill_in 'user_name', with: '200号'
         fill_in 'user_email', with: 'test200@gmail.com'
@@ -40,12 +40,12 @@ end
     end
   end
 
-  describe 'ログイン' do
-    context 'ログイン' do
+  describe 'ログイン機能' do
+    context 'ログインをクリックした際' do
       before do
         FactoryBot.create(:second_user)
       end
-      it 'ログイン' do
+      it 'ログインができること' do
         visit new_session_path
         fill_in 'session_email', with: 'test2@gmail.com'
         fill_in 'session_password', with: '222222'
@@ -55,12 +55,12 @@ end
     end
   end
 
-    describe '管理者のユーザー新規登録' do
+    describe '管理者によるユーザー新規登録' do
       before do
         FactoryBot.create(:second_user)
       end
       context '管理者のユーザー新規登録' do
-        it '管理者のユーザー新規登録' do
+        it '管理者のによるーザー新規登録ができること' do
           visit new_session_path
           fill_in 'session_email', with: 'test2@gmail.com'
           fill_in 'session_password', with: '222222'
@@ -79,12 +79,12 @@ end
       end
     end
 
-    describe '非管理者のユーザー新規登録' do
+    describe '非管理者によるユーザー新規登録' do
       before do
         FactoryBot.create(:user)
       end
       context '非管理者のユーザー新規登録' do
-        it '非管理者のユーザー新規登録' do
+        it '非管理者によるユーザー新規登録ができること' do
           visit new_session_path
           fill_in 'session_email', with: 'test10@gmail.com'
           fill_in 'session_password', with: '111111'

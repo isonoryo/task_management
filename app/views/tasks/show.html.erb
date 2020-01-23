@@ -6,5 +6,5 @@
 <p><%= t('view.priority') %>: <%= @task.priority %></p>
 
  <% @task.task_labels.each do |task_label| %>
-  <%= task_label.label.title %><br>
+<p><%= t('view.label') %>: <%= task_label.label.title %><br></p>
 <% end %>
