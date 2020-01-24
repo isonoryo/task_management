@@ -61,6 +61,29 @@
    z-index: 1;
  }
 
+ /* .top_ul li {
+   float: right;
+   display: block;
+   text-align: center;
+   margin: 15px 15px;
+ }
+
+ #top_icon {
+   font-family: fantasy;
+   font-size: 35px;
+   float: left;
+ }
+
+ #li_top {
+   float: left;
+   /* margin-left: 15%; */
+ /* }
+
+ .clearfix:after {
+   content: "";
+   display: block;
+   clear: both;
+ } */
  header {
    width: 100%;
    background-color: white;
@@ -109,6 +132,14 @@
    color:#fff;
    box-sizing: border-box;
    border: solid 1px #fff;
+}
+
+.task_label {
+  display: block;
+  background-color:#F3A7AB;
+  color:#fff;
+  box-sizing: border-box;
+  border: solid 1px #fff;
 }
 
 .item{
