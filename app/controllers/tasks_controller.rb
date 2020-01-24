@@ -76,7 +76,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     end
 
-    def task_check
+    def task_check #他者の投稿へid指定で飛んだ場合でも、ユーザーとタスクのidをチェックして、閲覧不可にする。
       if @task.user_id != current_user.id
         redirect_to user_path(current_user.id), notice:"他者の投稿へはアクセス出来ません"
       end

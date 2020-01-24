@@ -91,11 +91,40 @@ RSpec.describe 'タスク管理機能', type: :system do
          click_on 'ログインする'
          task = FactoryBot.create(:task,
                                    id: 777,
+                                   user: @user1,
                                    title: 'タイトル',
                                    content: '内容')
         visit task_path(777)
         expect(page).to have_content 'タイトル'
         expect(page).to have_content '内容'
+       end
+     end
+  end
+
+  describe 'ラベル検索機能確認' do
+     label = Label.create(id: 8, title: "sample6")
+     context 'ラベル検索を行った場合' do
+       it '検索したラベルのタスクが表示されること' do
+         visit new_session_path
+         fill_in 'session_email', with: 'test2@gmail.com'
+         fill_in 'session_password', with: '222222'
+         click_on 'ログインする'
+         task = FactoryBot.create(:task,
+                                   user: @user1,
+                                   title: 'タイトル',
+                                   content: '内容',
+                                   )
+
+        FactoryBot.create(:task_label, task_id: task, label_id: label)
+        # FactoryBot.create(:task_, label, task_id: 777, label_id: 1)
+        visit tasks_path
+        save_and_open_page
+        find("option[value='8']").select_option
+        # find("sample6").select_option
+        # select 'sample1'
+        click_on '検索する'
+        expect(page).to have_content 'sample6'
+        # expect(page).to have_content '内容'
        end
      end
   end
